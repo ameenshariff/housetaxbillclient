@@ -1,0 +1,123 @@
+<hr>
+
+<button  mat-raised-button color="primary" style="margin-left: 1100px;margin-top: -130px;" id="logout"
+  (click)="logout()">{{loggedInAdmin}}&nbsp;&nbsp;Logout</button>
+<div id="d">
+
+
+  <h2 style="margin-left: 35%;">Customer Details</h2>
+
+  <!-- Search form -->
+  <!-- <input class="form-control" name="search" [(ngModel)]="searchText" autocomplete="off"
+    placeholder="Start searching for a Customer by name or Locality or House Number etc..." type="text" aria-label="Search"> -->
+
+  <div fxLayout fxLayoutAlign="center center">
+    <mat-form-field fxFlex="40%">
+      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search Customers">
+    </mat-form-field>
+  </div>
+
+  <!-- customer table -->
+
+  <div class="wrapper">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="index" >
+        <th mat-header-cell *matHeaderCellDef> Sl no </th>
+        <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}}&nbsp; </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="locality">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Locality </th>
+        <td mat-cell *matCellDef="let element"> {{element.locality}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="houseType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> House Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.houseType}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="houseNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> House Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.houseNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="plotNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Plot Number </th>
+        <td mat-cell *matCellDef="let element"> {{element.plotNo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="propertyRegistrationDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Property Registration Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.propertyRegistrationDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="area">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Area </th>
+        <td mat-cell *matCellDef="let element"> {{element.area}} </td>
+      </ng-container>
+
+      <!-- buttons -->
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Action </th>
+        <td mat-cell *matCellDef="let element"><button (click)="deleteCustomer(element)" mat-stroked-button
+            color="primary">Delete</button>
+          &nbsp;<button (click)="editCustomer(element)" mat-stroked-button color="primary">Edit</button> 
+          &nbsp;<button  *ngIf="areDateSame(element.propertyRegistrationDate) && some(element.propertyRegistrationDate)" (click)="generateBill(element.firstName,element.lastName,element.userName,element.custId)" mat-stroked-button color="primary">Generate Bill</button></td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Angular 8 pagination -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+  </div>
+
+
+<!-- admin page with sorting -->
+
+  <!-- <table class="table">
+    <tr>
+      <th>Sl.No</th>
+      <th>Customer Name</th>
+      <th>Locality</th>
+      <th>House Type</th>
+      <th>House Number</th>
+      <th>Plot Number</th>
+      <th>Property Registration Date</th>
+      <th>Area(sq.ft)</th>
+      <th colspan="2" style="text-align: center;">Action</th>
+    </tr>
+    <tr *ngFor="let customer of customers | filter:searchText;let j=index">
+      <ng-container>
+        <td>{{j+1}}</td>
+        <td>{{customer.firstName}}&nbsp;{{customer.lastName}}</td>
+        <td>{{customer.locality}}</td>
+        <td>{{customer.houseType}}</td>
+        <td>{{customer.houseNo}}</td>
+        <td>{{customer.plotNo}}</td>
+        <td>{{customer.propertyRegistrationDate}}</td>
+        <td>{{customer.area}}</td>
+        <td><button (click)="editCustomer(customer)" class=" btn btn-primary">Edit</button></td>
+        <td><button id="genBill" *ngIf="areDateSame(customer.propertyRegistrationDate)" class=" btn btn-primary"
+            (click)="generateBill(customer.firstName,customer.lastName,customer.userName)">Generate Bill</button>
+           
+          </td>
+      </ng-container>
+    </tr>
+  </table> -->
+
+

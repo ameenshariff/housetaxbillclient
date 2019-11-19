@@ -1,0 +1,6 @@
+.example-card {
+    padding-left: 300px;
+    padding-right: 300px;
+    /* position: absolute; */
+    position: sticky;
+  }

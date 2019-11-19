@@ -1,0 +1,110 @@
+<hr>
+
+<mat-card class="example-card">
+
+<h2 style="text-align-last: center;height: 80px;padding-top: 20px; background-color: rgba(245, 241, 8, 0.911);">Registration</h2>
+<hr>
+
+<h6 style="text-align-last: center;color: red;">All the fields are mandatory</h6>
+
+<form #loginForm="ngForm">
+  <div>
+    <label for="fName">First Name:</label>
+    <input placeholder="ex: Ameen" type="text" class="form-control" id="fName" #fName="ngModel"
+      pattern="[A-Z][a-z]{2,12}" name="fName" [(ngModel)]="registration.firstName" required>
+    <div [hidden]="fName.valid || fName.pristine" class="alert alert-danger">First Name is not valid. It must only contain alphabets, first char should be Uppercase and min=3, max=12</div>
+  </div>
+
+  <div>
+    <label for="lName">Last Name:</label>
+    <input type="text" placeholder="ex: Shariff" class="form-control" pattern="[A-Z][a-z]{0,12}"  id="lName" name="lName" [(ngModel)]="registration.lastName" #lName="ngModel" required>
+    <div [hidden]="lName.valid || lName.pristine" class="alert alert-danger">Last Name is not valid. First letter must
+        by Uppercase and min=1, max=12</div>
+  </div>
+
+  <div>
+    <label for="hNo">House Number:</label>
+    <input type="text" placeholder="ex: 565" maxlength="4" pattern="[A-Z][0-9]{0,4}" class="form-control" id="hNo" name="hNo" [(ngModel)]="registration.houseNo" #hNo="ngModel" required>
+    <div [hidden]="hNo.valid || hNo.pristine" class="alert alert-danger">House Number is not valid.  min=1</div>
+  </div>
+
+  <div>
+    <label for="pNo">Plot Number:</label>
+    <input type="text" placeholder="ex: 34" maxlength="4" pattern="[A-Z][0-9]{1,4}" class="form-control" id="pNo" name="pNo" [(ngModel)]="registration.plotNo" #pNo="ngModel" required>
+    <div [hidden]="pNo.valid || pNo.pristine" class="alert alert-danger">Plot Number is not valid. min=1</div>
+  </div>
+
+  <div>
+    <label for="area">Area (in Sq.ft):</label>
+    <input type="number" placeholder="ex: 1200" pattern="[0-9]{2,6}" class="form-control" id="area" name="area" [(ngModel)]="registration.area" #area="ngModel" required>
+    <div [hidden]="area.valid || area.pristine" class="alert alert-danger">Area is accepted in square feet . Only Numbers are accepted min=2 max=6</div>
+  </div>
+
+  <div>
+    <label>Select Locality:</label>
+    <select [(ngModel)]="registration.locality" name="locality" class="form-control" required>
+      <!-- <option value="select">Select </option> -->
+      <option value="Thanisandra">Thanisandra</option>
+      <option value="White_Field">White Field</option>
+      <option value="HBR_Layout">HBR Layout</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Select HouseType:</label>
+    <select [(ngModel)]="registration.houseType" name="houseType" class="form-control" required>
+      <!-- <option value="select">Select </option> -->
+      <option value="Penthouses">Penthouses</option>
+      <option value="Apartments_and_Flats">Apartments and Flats</option>
+      <option value="Villas">Villas</option>
+      <option value="Farmhouses">Farmhouses</option>
+      <option value="Eco_friendly_Homes">Eco friendly Homes</option>
+    </select>
+  </div>
+
+  <div>
+    <!-- <label for="date">Property Registration Date:</label>
+    <input [maxDate]="maxDate" class="form-control" name="propertyRegistrationDate"
+      [(ngModel)]="registration.propertyRegistrationDate" required> -->
+      <label for="date">Property Registration Date:</label><br>
+      <mat-form-field class="example-full-width">
+        <input name="pRegistrationDate" [(ngModel)]="registration.pRegistrationDate" required matInput [max]="maxDate" [matDatepicker]="picker" placeholder="Choose Property Registration date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </div>
+
+  <div>
+    <label for="userName">User Name:</label>
+    <input (click)="user($event)" placeholder="ex: ameshari" type="text" pattern="[a-z]{2,12}" id="userName" class="form-control" name="userName" [(ngModel)]="login.userName" #userName="ngModel" required>
+    <div [hidden]="userName.valid || userName.pristine" class="alert alert-danger">User Name is not valid. min=5, max=12</div>
+    <div id="sameId" hidden class="alert alert-danger">User Name Already Registered. Use different User Name
+      or try Logging in.
+    </div>
+  </div>
+
+
+  <div>
+    <label for="pwd">Password:</label>
+    <input type="password" class="form-control" name="pwd" placeholder="Type a strong password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$" [(ngModel)]="login.password" #password="ngModel" required>
+    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password must contain min 8 & max 12 characters. It must have the 
+      combination of Uppercase, Lowercase, Number & a Special character</div>
+
+  </div>
+
+  <div>
+    <label for="cpwd">Confirm Password:</label>
+    <input type="password" class="form-control" placeholder="Re-Enter the Password" name="cpwd" [(ngModel)]="login.cPassword" required
+      pattern="{{login.password}}">
+  </div>
+
+  <div style="margin-top: 10px;">
+  <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary" 
+    (click)="onRegister()">Register</button>
+    &nbsp;&nbsp;
+    <button type="submit" class="btn btn-secondary" 
+    (click)="onCancel()">Cancel</button>
+</div>
+
+</form>
+</mat-card>

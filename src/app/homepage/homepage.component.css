@@ -1,0 +1,22 @@
+#register{
+  margin-top: 80px;
+  margin-left: 30%;
+}
+
+#desc{
+  line-height: 26pt;
+  font-size: 30px;
+  text-align: center;
+}
+
+.bg{
+  /* The image used */
+  /* background-image: url("https://cms-img.coverfox.com/property_tax.jpg"); */
+  /* Full height */
+  /* background-color: rgb(10, 135, 245); */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

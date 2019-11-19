@@ -1,0 +1,91 @@
+<hr>
+
+<h2 style="margin-left: 500px;">Transactions</h2>
+
+<button id="print" class="btn btn-success" style="margin-left: 1100px;" (click)="printTransactions()">Print
+  Transactions</button>
+
+
+  <div class="wrapper">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+  
+      <ng-container matColumnDef="i">
+        <th mat-header-cell *matHeaderCellDef > SlNo. </th>
+        <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="transactionId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Id</th>
+        <td mat-cell *matCellDef="let element"> {{element.transactionId}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="billNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Bill No </th>
+        <td mat-cell *matCellDef="let element"> {{element.billNo}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="billGenerateDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Bill Generated Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.billGenerateDate}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="paymentDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Paid Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.paymentDate}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tax Amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="fine">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fine Paid</th>
+        <td mat-cell *matCellDef="let element"> {{element.fine}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="paymentNo">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Paid Through </th>
+        <td mat-cell *matCellDef="let element"> {{element.paymentNo}} </td>
+      </ng-container>
+  
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+
+      
+    </table>
+
+    <p id="noTrans" hidden style="color: red;font-size: 20px; text-align: center; padding-top: 20px;">No previous transaction made for this account.</p>
+  
+    <!-- Angular 8 pagination -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+  </div>
+
+<!-- 
+<table class="table table-hover">
+  <tr>
+    <th>#</th>
+    <th>Transaction ID</th>
+    <th>Bill Number</th>
+    <th>Bill Generate Date</th>
+    <th>Paid Date</th>
+    <th>Amount</th>
+    <th>Fine Paid</th>
+    <th>Paid Through</th>
+
+  </tr>
+  <tr *ngFor="let transaction of transactions;let i=index">
+    <td>{{i+1}}</td>
+    <td>{{transaction.transactionId}}</td>
+    <td>{{transaction.billNo}}</td>
+    <td>{{transaction.billGenerateDate}}</td>
+    <td>{{transaction.paymentDate}}</td>
+    <td>{{transaction.amount}}</td>
+    <td>{{transaction.fine}}</td>
+    <td>{{transaction.paymentNo}}</td>
+  </tr>
+</table> -->
+

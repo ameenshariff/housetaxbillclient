@@ -1,0 +1,76 @@
+<button mat-raised-button color="primary" style="margin-left: 1100px;margin-top: -80px;" id="logout"
+  (click)="logout()">{{loggedInCustomer}}&nbsp;&nbsp;Logout</button>
+
+<hr>
+<br>
+
+<div id="d">
+  <table>
+    <tr>
+      <td>Customer Name : </td>
+      <td>{{customerFullName}}</td>
+    </tr>
+    <tr>
+      <td>Locality : </td>
+      <td>{{customer.locality}}</td>
+    </tr>
+    <tr>
+      <td>House Type : </td>
+      <td>{{customer.houseType}}</td>
+    </tr>
+    <tr>
+      <td>Area : </td>
+      <td>{{customer.area}} sq.ft</td>
+    </tr>
+    <tr>
+      <td>Plot Number : </td>
+      <td>{{customer.plotNo}}</td>
+    </tr>
+    <tr>
+      <td>House Number : </td>
+      <td>{{customer.houseNo}}</td>
+    </tr>
+    <tr>
+      <td>P Registration Date : </td>
+      <td>{{customer.propertyRegistrationDate}}</td>
+    </tr>
+
+  </table>
+</div>
+
+
+<!-- <hr> -->
+<button (click)="showHistory()" style="position: absolute;padding: 10px; margin: 20px;" class="btn btn-primary">Show Payment History</button>
+
+
+<div id="t">
+  <h4 style="text-align: center;">Unpaid Bills</h4>
+  
+
+  <table class="table">
+    <tr>
+      <th>Bill Number</th>
+      <th>Bill Date</th>
+      <th>Bill Amount</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let billDetail of billDetails;let i=index">
+      <ng-container *ngIf="billDetail.billPaid==false">
+        <td>{{billDetail.billNo}}</td>
+        <td>{{billDetail.billDate}}</td>
+        <td>{{billDetail.amount}}</td>
+        <td><button (click)="onPay(billDetail)" class=" btn btn-primary">Pay</button>
+        </td>
+      </ng-container>
+    </tr>
+  </table>
+
+  <!-- <ng-template #noBills>
+      <h5 id="noBills" style="text-align: center; color: red;">Currently there are no bills</h5>
+  </ng-template> -->
+
+  <h5 id="noBills" id="noBills" hidden style="text-align: center; color: red;">Currently there are no bills</h5>
+  
+
+  
+</div>

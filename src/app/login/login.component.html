@@ -1,0 +1,43 @@
+<hr>
+
+
+
+<mat-card class="example-card">
+
+  <h2 style="text-align-last: center;height: 80px;padding-top: 20px; background-color: rgba(8, 93, 189, 0.767);">Login
+    Form</h2>
+
+  <form #loginForm1="ngForm">
+    <!-- <div>
+      <div *ngIf="!loginForm.valid" class="alert alert-danger">Enter Credentials to Login</div>
+    </div> -->
+
+    <div>
+      <label for="userName">User Name:</label>
+      <input style="column-width: 500px;" type="text" class="form-control" name="userName" id="userName"
+        [(ngModel)]="login.userName" #userName="ngModel" required>
+      <div [hidden]="userName.valid || userName.pristine" class="alert alert-danger">User Name must be entered</div>
+    </div>
+    <br>
+
+    <div>
+      <label for="password">Password:</label>
+      <!-- <input type="password" class="form-control" name="password" id="password" [(ngModel)]="login.password"
+        #password="ngModel" required>
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password must be entered</div>  -->
+
+      <input [type]="show ? 'text' : 'password'" class="form-control" name="password" id="password"
+        [(ngModel)]="login.password" #password="ngModel" required />
+      <button mat-stroked-button (click)="password1()">Show/Hide</button>
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password must be entered</div>
+
+    </div>
+
+    <!-- <div hidden id="pass" class="alert alert-danger">
+      Password must contain 8 characters
+    </div> -->
+
+    <button type="submit" [disabled]="loginForm1.invalid" class="btn btn-primary" style="margin-top: 10px;"
+      (click)="onLogin()">Login</button>
+  </form>
+</mat-card>

@@ -1,0 +1,32 @@
+<hr>
+
+<button class=" btn btn-secondary" style="margin-left: 1100px;margin-top: -130px;" id="logout"
+  (click)="logout()"><label>{{loggedInCustomer}}&nbsp;&nbsp;</label>Logout</button>
+
+  <h3 style="text-align: center;">Payment</h3>
+
+<form style=" padding-left: 400px;padding-right: 400px;" #payment="ngForm">
+  <div>
+    <label for="billNo">Bill Number:</label>
+    <input type="text" class="form-control" value="{{billNo}}" name="billNo" disabled required>
+  </div>
+
+  <div>
+    <label for="amount">Amount:</label>
+    <input disabled type="text" class="form-control" id="amount" name="amount" value="{{billAmount}}" required>
+  </div>
+
+  <div *ngIf="fine!=0">
+    <label for="fine">Fine:</label>
+    <input disabled type="text" class="form-control" id="fine" name="amount" value="{{fine}}" required>
+  </div>
+
+  <div>
+    <label for="pNo">Payment Number:</label>
+    <input type="text" class="form-control" id="pNo" name="pNo" [(ngModel)]="payment.paymentNo"
+      placeholder="Ex: 346678662100" pattern="[1-9]{8,12}" required>
+  </div>
+
+  <button type="submit" [disabled]="payment.invalid" class="btn btn-success" style="margin-top: 10px;"
+    (click)="onMakePayment()">Make Payment</button>
+</form>
